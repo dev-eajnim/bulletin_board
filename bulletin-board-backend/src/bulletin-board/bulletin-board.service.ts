@@ -13,7 +13,10 @@ export class BulletinBoardService {
   ){}
 
   create(createBulletinBoardDto: CreateBulletinBoardDto) {
-    return 'This action adds a new bulletinBoard';
+    this.boardRepository.save({
+      ...createBulletinBoardDto
+    })
+    return ;
   }
 
   findAll() {

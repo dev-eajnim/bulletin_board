@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- .css연결 -->
+    <link rel="stylesheet" type="text/css" href="bulletinBoard.css">
+
+    <!-- .js연결 -->
+    <script src="bulletinBoard.js"></script>
+</head>
+<body>
+    <div class="div1">
+        <h1> 게시판 </h1>
+    </div>
+
+    <div class="div2">
+        <table class="tab" style="width: 450px; table-layout:fixed">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
+                </tr>
+            </thead>
+        <!-- 줄 시작 -->
+            <tbody class="boardListBody">
+                <tr class="tr">
+                    <td>번호 칸</td>
+                    <td>제목 칸 </td>
+                    <td>작성일 칸</td>
+                    <td>조회수 칸</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="div3">
+        <select name = "search" id="selectSearch">
+            <option value="title">제목으로 검색</option>
+            <option value="titleContent">제목+내용으로 검색</option>
+        </select>
+        <input>
+        <button> 검색 </button>
+        <button onclick="location.href='modify.html'"> 쓰기 </a>
+    </div>
+    
+</body>
+<script>getList();</script>
+</html>

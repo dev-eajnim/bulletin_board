@@ -1,8 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class BulletinBoard {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn() //자동으로 id 생성
     id : number
     
     @Column()
@@ -11,9 +11,9 @@ export class BulletinBoard {
     @Column()
     content : string
 
-    @Column()
+    @CreateDateColumn()
     date : Date
 
-    @Column()
+    @Column({ default: 0 })
     views : number
 }

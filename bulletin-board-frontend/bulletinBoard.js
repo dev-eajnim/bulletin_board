@@ -1,3 +1,6 @@
+let selectedId = null;
+
+// 전체 조회 (GET LIST)
 async function getList(){
     const list = await fetch('http://localhost:3000/bulletin-board')
     .then(res=>res.json());
@@ -20,5 +23,36 @@ async function getList(){
 
         tableBody.append(tr)
         console.log(tr);
+    }
+}
+
+// 쓰기(WRITE) 버튼
+async function createlist(){
+    const newTitle = document.querySelector('.modifyTitle').value;
+    const newContent = document.querySelector('.modifyContent').value;
+
+    const list = await fetch('http://localhost:3000/bulletin-board', {
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+            "title":newTitle,
+            "content":newContent
+            //작성일 - entity 데코레이션으로 해결
+            //views ++ 해야함!! - entity 데코레이션으로 해결
+        })
+    }).then(()=>{ //return을 안해줘서 나도 res=> res.json() 안함 understand?
+        alert("새로 저장되었습니다");
+    }).catch(()=>{
+        alert("에러에러에러");
+    })
+}
+
+async function btnSave(){
+    if(selectedId){
+        // update함수
+    }else{
+        createlist();
     }
 }

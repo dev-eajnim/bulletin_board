@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- title 태그 사용해서 하면 될듯? -->
-    <title>여기에 각 제목을 넣고 싶다...</title>
+    <title>생성? 수정?을 구분하는 제목을 넣을 순 없나</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,20 +15,21 @@
     <script src="bulletinBoard.js"></script>
 
 </head>
+
 <body>
-    <div class="detailDiv">
+    <div class="modifyDiv">
         <div>
-            <h2>여기엔 제목이 들어갑니다.</h1>
+            <h2>제목</h2>
         </div>
-    
-        <div style="height: 250px;">
-            여기엔 내용이 들어갑니다.
-        </div>
-    
+        <div><input class="modifyTitle" style="width: 350px; height: 30px;"></div>
+
         <div>
-            <button style="width:100px; height: 30px;">수정</button>
-            <button style="width:100px; height: 30px;">삭제</button>
+            <h2>내용</h2>
         </div>
+        <div><input class="modifyContent" style="width: 350px; height: 150px;"></div>
+
+        <button style="width:100px; height: 30px; margin:50px auto auto 130px;"  onclick="btnSave()">저장</button>
     </div>
 </body>
+
 </html>
