@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +16,7 @@
     <!-- .js연결 -->
     <script src="bulletinBoard.js"></script>
 </head>
+
 <body>
     <div class="div1">
         <h1> 게시판 </h1>
@@ -30,7 +32,7 @@
                     <th>조회수</th>
                 </tr>
             </thead>
-        <!-- 줄 시작 -->
+
             <tbody class="boardListBody">
                 <tr class="tr">
                     <td>번호 칸</td>
@@ -43,7 +45,7 @@
     </div>
 
     <div class="div3">
-        <select name = "search" id="selectSearch">
+        <select name="search" id="selectSearch">
             <option value="title">제목으로 검색</option>
             <option value="titleContent">제목+내용으로 검색</option>
         </select>
@@ -51,7 +53,8 @@
         <button> 검색 </button>
         <button onclick="location.href='modify.html'"> 쓰기 </a>
     </div>
-    
+
 </body>
 <script>getList();</script>
+
 </html>

@@ -11,12 +11,13 @@ async function getList(){
     for(let l of list){
         const tr = document.createElement('tr');
 
-        const d = new Date(l.date) //먼저 Date형식으로 바꿔줘야 함
+        const d = new Date(l.date) //먼저 Date형식으로 바꿔줘야 아래거를 사용할 수 있음
         const date = d.toLocaleDateString()
 
+        // <a href="detail.html?id=${l.id}"> 여기서 Query 값(id) 넘김!!
         tr.innerHTML=`
         <td>${l.id}</td>
-        <td><a href="detail.html">${l.title}</td>
+        <td><a href="detail.html?id=${l.id}">${l.title}</td> 
         <td>${date}</td>
         <td>${l.views}</td>
         `;
@@ -42,11 +43,12 @@ async function createlist(){
             //작성일 - entity 데코레이션으로 해결
             //views ++ 해야함!! - entity 데코레이션으로 해결
         })
-    }).then(()=>{ //return을 안해줘서 나도 res=> res.json() 안함 understand?
+    }).then(()=>{ //return을 안해줘서 나도 res=> res.json() 안함 Do you understand?
         alert("새로 저장되었습니다");
     }).catch(()=>{
         alert("에러에러에러");
     })
+    history.back(); //이전 페이지로 이동, 이동하면 알아서 다시 getList되서 리스트가 나옴
 }
 
 async function btnSave(){
