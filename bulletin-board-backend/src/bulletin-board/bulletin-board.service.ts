@@ -4,6 +4,7 @@ import { CreateBulletinBoardDto } from './dto/create-bulletin-board.dto';
 import { UpdateBulletinBoardDto } from './dto/update-bulletin-board.dto';
 import { BulletinBoard } from './entities/bulletin-board.entity';
 import { Repository } from 'typeorm';
+
 @Injectable()
 export class BulletinBoardService {
   constructor(
@@ -16,7 +17,7 @@ export class BulletinBoardService {
   }
 
   findAll() {
-    return `This action returns all bulletinBoard`;
+    return this.boardRepository.find();
   }
 
   findOne(id: number) {

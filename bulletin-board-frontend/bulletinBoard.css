@@ -1,0 +1,54 @@
+*{
+    font-family: 'Jua', sans-serif;
+}
+
+.div1 {
+    width: 100px;
+    height: 50px;
+    margin: auto auto 30px auto;
+    padding: auto;
+}
+
+/* .div2{
+    width: 500px;
+} */
+
+.div3 {
+    width: 450px;
+    height: 100px;
+    margin: auto;
+    padding: 50px;
+    /* background-color: red; */
+}
+
+table {
+    margin: auto;
+}
+
+table,
+td,
+th {
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.detailDiv {
+    width: 300px;
+    height: 200px;
+    margin: 100px auto;
+    padding: auto;
+    text-align: center;
+    border: solid 3px black;
+    border-radius: 30px;
+}
+
+.modifyDiv {
+    width: 350px;
+    height: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    text-align: left;
+    border: solid 3px black;
+    border-radius: 30px;
+}
