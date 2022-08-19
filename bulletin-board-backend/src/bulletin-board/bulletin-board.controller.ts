@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { query } from 'express';
 import { BulletinBoardService } from './bulletin-board.service';
 import { CreateBulletinBoardDto } from './dto/create-bulletin-board.dto';
 import { UpdateBulletinBoardDto } from './dto/update-bulletin-board.dto';
@@ -13,8 +14,8 @@ export class BulletinBoardController {
   }
 
   @Get()
-  findAll() {
-    return this.bulletinBoardService.findAll();
+  findAll(@Query('page') page?: number, @Query('keyword') keyword? : string) {
+    return this.bulletinBoardService.findAll(page, keyword)
   }
 
   @Get(':id')
@@ -22,9 +23,21 @@ export class BulletinBoardController {
     return this.bulletinBoardService.findOne(+id);
   }
 
+  @Get(':keyword/search')
+  searchKeyword(@Param('keyword') keyword:string){
+    return this.bulletinBoardService.searchKeyword(keyword);
+  }
+
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBulletinBoardDto: UpdateBulletinBoardDto) {
+  update(@Param('id') id: string, 
+  @Body() updateBulletinBoardDto: UpdateBulletinBoardDto) {
     return this.bulletinBoardService.update(+id, updateBulletinBoardDto);
+  }
+
+  @Patch(':id/views')
+  updateViews(@Param('id') id: string) {
+    return this.bulletinBoardService.updateViews(+id)
   }
 
   @Delete(':id')

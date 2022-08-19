@@ -1,14 +1,17 @@
 let selectedId = null;
 
 // 전체 조회 (GET LIST)
-async function getList() {
-    const list = await fetch('http://localhost:3000/bulletin-board')
+async function getList(page = 1, keyword = '') {
+    const result = await fetch(`http://localhost:3000/bulletin-board?page=${page}&keyword=${keyword}`)
         .then(res => res.json());
+
+    const { items, total } = result
 
     const tableBody = document.querySelector('.boardListBody');
     tableBody.innerHTML = ''
 
-    for (let l of list) {
+    let i = (page-1)*5+1
+    for (let l of items) {
         const tr = document.createElement('tr');
 
         const d = new Date(l.date) //먼저 Date형식으로 바꿔줘야 아래거를 사용할 수 있음
@@ -16,7 +19,7 @@ async function getList() {
 
         // <a href="detail.html?id=${l.id}"> 여기서 Query 값(id) 넘김!!
         tr.innerHTML = `
-        <td>${l.id}</td>
+        <td>${i++}</td>
         <td><a href="detail.html?id=${l.id}">${l.title}</td> 
         <td>${date}</td>
         <td>${l.views}</td>
@@ -24,6 +27,18 @@ async function getList() {
 
         tableBody.append(tr)
         console.log(tr);
+    }
+    
+    const lastPage = parseInt(total/5) + 1
+    const pageDiv = document.querySelector('.page')
+    pageDiv.innerHTML = ''
+    for(let i = 0; i < lastPage; i++) {
+        const a = document.createElement('a')
+        a.innerText = i+1
+        a.onclick = () => {
+            getList(i+1, keyword)
+        }
+        pageDiv.append(a)
     }
 }
 
@@ -122,6 +137,8 @@ async function updatelist(){
 async function btndetailUpdate(){
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
+
+    if(!id) return
     
     const li = await fetch(`http://localhost:3000/bulletin-board/${id}`
     ).then((res)=> res.json());
@@ -145,7 +162,8 @@ function moveToModify() {
 
 async function updateViews(id) {
     // update views
-    await fetch(`http://localhost:3000/bulletin-board/${id}`,{
+    let views 
+    await fetch(`http://localhost:3000/bulletin-board/${id}/views`,{
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -155,4 +173,10 @@ async function updateViews(id) {
     }).then((res)=>res.json()
     ).catch(()=>alert("에러에러에러"));
     console.log(views);
+}
+
+// "검색" 버튼
+async function searchList() {
+    const keyword = document.querySelector('.searchKeyword').value;
+    getList(1, keyword)
 }
