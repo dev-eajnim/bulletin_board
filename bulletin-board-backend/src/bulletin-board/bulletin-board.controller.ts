@@ -17,8 +17,7 @@ export class BulletinBoardController {
     return this.bulletinBoardService.findAll();
   }
 
-  //여기야 여기!!!! 쿼리를 사용해야 할 곳!!!
-  @Get('?id')
+  @Get(':id')
   findOne(@Param('id') id: string) {
     return this.bulletinBoardService.findOne(+id);
   }

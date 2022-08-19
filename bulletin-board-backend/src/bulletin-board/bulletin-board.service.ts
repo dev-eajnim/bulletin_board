@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateBulletinBoardDto } from './dto/create-bulletin-board.dto';
 import { UpdateBulletinBoardDto } from './dto/update-bulletin-board.dto';
@@ -9,14 +9,14 @@ import { Repository } from 'typeorm';
 export class BulletinBoardService {
   constructor(
     @InjectRepository(BulletinBoard)
-    private boardRepository:Repository<BulletinBoard>
-  ){}
+    private boardRepository: Repository<BulletinBoard>
+  ) { }
 
   create(createBulletinBoardDto: CreateBulletinBoardDto) {
     this.boardRepository.save({
       ...createBulletinBoardDto
     })
-    return ;
+    return;
   }
 
   findAll() {
@@ -24,14 +24,24 @@ export class BulletinBoardService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} bulletinBoard`;
+    return this.boardRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateBulletinBoardDto: UpdateBulletinBoardDto) {
-    return `This action updates a #${id} bulletinBoard`;
+  async update(id: number, updateBulletinBoardDto: UpdateBulletinBoardDto) {
+    let li = await this.boardRepository.findOne({ where: { id } });
+    if(!li) throw new NotFoundException();
+    li = {
+      ...li,
+      ...updateBulletinBoardDto
+    }
+    return this.boardRepository.save(li);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} bulletinBoard`;
+  async remove(id: number) {
+    //중간에 서버와 통신할 땐 기다려야하니까, await 필수 - 비동기
+    let li = await this.boardRepository.findOne({ where: { id } });
+    if (!li) throw new NotFoundException();
+    //return에서는 await을 생략해도 됨
+    return this.boardRepository.remove(li);
   }
 }

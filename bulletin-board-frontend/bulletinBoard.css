@@ -2,6 +2,12 @@
     font-family: 'Jua', sans-serif;
 }
 
+a{
+    text-decoration: none;
+}
+a:visited{
+    color: black;
+}
 .div1 {
     width: 100px;
     height: 50px;

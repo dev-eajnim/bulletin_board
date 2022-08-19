@@ -18,17 +18,20 @@
 <body>
     <div class="detailDiv">
         <div>
-            <h2>여기엔 제목이 들어갑니다.</h1>
+            <h2 class="detailTitle">여기엔 제목이 들어갑니다.</h2>
         </div>
     
-        <div style="height: 250px;">
+        <div style="height: 250px;" class="detailContent">
             여기엔 내용이 들어갑니다.
         </div>
     
         <div>
-            <button style="width:100px; height: 30px;">수정</button>
-            <button style="width:100px; height: 30px;">삭제</button>
+            <button style="width:100px; height: 30px;" onclick="moveToModify()">수정</button>
+            <button style="width:100px; height: 30px;" onclick="deleteDetail()" >삭제</button>
         </div>
     </div>
+    <script>
+        getDetail();
+    </script>
 </body>
 </html>
